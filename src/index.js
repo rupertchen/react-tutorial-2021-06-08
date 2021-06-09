@@ -29,25 +29,18 @@ class Board extends React.Component {
     />;
   }
 
-  renderCols(row) {
-    const items = [];
-    for (let i = 0; i < 3; i++) {
-      items.push(this.renderSquare(row * 3 + i));
-    }
-    return items;
-  }
-
-  renderRows() {
-    const items = [];
-    for (let row = 0; row < 3; row++) {
-      items.push(<div key={row} className="board-row">{this.renderCols(row)}</div>);
-    }
-    return items;
-  }
-
   render() {
+    const rows = [];
+    for (let r = 0; r < 3; r++) {
+      const cols = [];
+      for (let c = 0; c < 3; c++) {
+        cols.push(this.renderSquare(r * 3 + c));
+      }
+      rows.push(<div key={r} className="board-row">{cols}</div>)
+    }
+
     return (
-      <div>{this.renderRows()}</div>
+      <div>{rows}</div>
     );
   }
 }
